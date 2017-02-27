@@ -28,7 +28,7 @@ void stop_button_activated_ignore_orders() {
 			//gjør den det pga while løkken, eller må man implementere noe for det også?
 			continue;
 		}
-		
+
 	}
 }
 
