@@ -1,5 +1,4 @@
 
-
 //a queue element with the value and a pointer to the next queue element
 typedef struct {
 	int motor_direction;

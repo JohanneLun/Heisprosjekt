@@ -12,17 +12,17 @@ typedef struct {
 // lagres før funksjonene. Static global?
 
 //skal denne være static??
-void add_order_in_Q(queue_element* previous_Q_element, queue_element* new_Q_element){
+void add_order_in_Q(queue_element *previous_Q_element, queue_element *new_Q_element){
 	//warning: assignment from incompatible pointer type
 	new_Q_element->next = previous_Q_element->next;
 	previous_Q_element->next = new_Q_element;
 }
 
-int* get_next_in_Q(queue_element* current){
+queue_element* get_next_in_Q(queue_element* current){
 	//int *temp = malloc(sizeof *temp);
 	// warning: initialization makes integer from pointer without a cast
-	int temp = current->next;
-	return &temp;
+	queue_element* temp = current->next;
+	return temp;
 }
 
 void compare_Q_and_floor(){
