@@ -8,3 +8,4 @@ struct timer_struct{
 double get_wall_time();
 void set_start_time(struct timer_struct* timer);
 int check_time(struct timer_struct timer);
+int start_timer();
