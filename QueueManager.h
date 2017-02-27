@@ -1,10 +1,10 @@
 
 
 //a queue element with the value and a pointer to the next queue element
-struct Queue_Element {
+typedef struct {
 	int motor_direction;
-	struct Queue_Element *next;
-}
+	struct queue_element *next;
+} queue_element;
 
 
 

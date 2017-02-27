@@ -1,8 +1,11 @@
 # Heisprosjekt
 Tilp.dat heisprosjekt
 
-Ting som vi ikke kan...
 
+- alt skrives med små bokstaver, bortsett fra ENUM.
+- 
+
+Ting som vi ikke kan...
 
 - for å slippe tull med flere header filer eln. :
 	#ifndef HEADER_FILE
