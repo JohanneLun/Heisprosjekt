@@ -64,19 +64,19 @@ void check_button_pressed_down(){
 	} 
 }
 void check_button_pressed_command(){
-	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR) {
+	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR)) {
 		set_order_in_Q_command(GROUND_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, GROUND_FLOOR, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, FIRST) {
+	if (elev_get_button_signal(BUTTON_COMMAND, FIRST)) {
 		set_order_in_Q_command(FIRST, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, FIRST, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, SECOND) {
+	if (elev_get_button_signal(BUTTON_COMMAND, SECOND)) {
 		set_order_in_Q_command(SECOND, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, SECOND, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, TOP_FLOOR) {
+	if (elev_get_button_signal(BUTTON_COMMAND, TOP_FLOOR)) {
 		set_order_in_Q_command(TOP_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, TOP_FLOOR, 1);
 	}
@@ -86,4 +86,3 @@ void check_button_pressed() {
 	check_button_pressed_down();
 	check_button_pressed_up();
 }
-

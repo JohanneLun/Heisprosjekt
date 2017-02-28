@@ -1,7 +1,72 @@
 #include "elev.h"
 #include <stdio.h>
 
+#include "Timer.h"
+#include "StateMachine.h"
+#include "QueueManager.h"
 
+
+
+int main() {
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 int main() {
     // Initialize hardware
     if (!elev_init()) {
@@ -29,3 +94,4 @@ int main() {
     }
     return 0;
 }
+*/

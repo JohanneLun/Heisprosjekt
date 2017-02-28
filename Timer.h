@@ -1,3 +1,7 @@
+#ifndef HEADER_FILE
+#define HEADER_FILE
+
+
 #include <stdio.h>
 #include <sys/time.h>
 
@@ -13,3 +17,6 @@ void start_timer(struct timer_struct* timer);
 
 //Returnerer 1 hvis det har gått 3 sekunder, og 0 ellers
 int check_time(struct timer_struct timer);
+
+
+#endif

@@ -30,6 +30,7 @@ void set_order_in_Q_command(int floor, int bool_value){
 	queue_command[floor] = bool_value;
 }
 
+
 // returns the value at the floor place in the array
 int get_order_in_Q_up(int floor){
 	return queue_up[floor];
@@ -47,8 +48,8 @@ void delete_Q(){
 		queue_up[i] = 0;
 		queue_down[i] = 0;
 	}
-	for(int i = 0; i < 4; i++) {
-		queue_command[i] = 0;
+	for(int x = 0; x < 4; x++) {
+		queue_command[x] = 0;
 	}
 }
   
