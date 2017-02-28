@@ -1,6 +1,6 @@
 
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef QueueManager
+#define QueueManager
 
 
 int get_motor_direction();

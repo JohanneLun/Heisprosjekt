@@ -1,6 +1,6 @@
 
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef StateMachine
+#define StateMachine
 
 enum Floor{
 	GROUND_FLOOR = 0,
@@ -9,5 +9,14 @@ enum Floor{
 	TOP_FLOOR = 3,
 	NOT_ON_FLOOR = -1//The elevator is between to floors  
 };
+
+void stop_button_activated_ignore_orders();
+void set_current_floor(void);
+int get_current_floor();
+void check_button_pressed_up();
+void check_button_pressed_down();
+void check_button_pressed_command();
+void check_button_pressed();
+
 
 #endif
