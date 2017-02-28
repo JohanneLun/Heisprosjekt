@@ -1,76 +1,89 @@
 #include <stdio.h>
 #include "StateMachine.h"
+#include "QueueManager.h"
+#include "elev.h"
 
-//checks the floor sensors to tell which floor the elevator is on
-int check_floor_sensors(){
-
-	return //tall;
-}
+static int current_floor;
 
 //kjøres ved sjekk av elev_get_stop_signal som returnerer 1
 void stop_button_activated_ignore_orders() {
-	elev_set_stop_lamp(1); //setter lampen
-
-	if (check_floor_sensors() != -1) {
-		elev_set_motor_direction(DIRN_STOP);
-		//delete_Q();	//ikke inkludert i denne c-filen ennå
+	elev_set_stop_lamp(1);
+	elev_set_motor_direction(DIRN_STOP);
+	//delete_Q();	//ikke inkludert i denne c-filen ennå
+	if (elev_get_floor_sensor_signal()== -1) {
 		while (elev_get_stop_signal() != 0) {
-			//ingorer alle bestillinger
-			//gjør den det pga while løkken, eller må man implementere noe for det også?
 			continue;
 		}
 	}
 	else {
 		elev_set_door_open_lamp(1);
-		//delete_Q();
 		while (elev_get_stop_signal() != 0) {
-			//ingorer alle bestillinger
-			//gjør den det pga while løkken, eller må man implementere noe for det også?
 			continue;
 		}
+	} 
+	elev_set_stop_lamp(0); 
+}
+// kjører en if(i etg.){tell ned 3 sek} etter stop_button_activated_ignore orders
+// hvor funksjonen tar inn et struct &timer og setter dør lampen av.
 
+void set_current_floor(void) {
+	current_floor = elev_get_floor_sensor_signal();
+}
+int get_current_floor() {
+	return current_floor;
+}
+
+//sjekker om en knapp er trykket og legger til i kø og setter på lys, hvis en er trykket
+void check_button_pressed_up() {
+	if (elev_get_button_signal(BUTTON_CALL_UP, GROUND_FLOOR) == 1) {
+		set_order_in_Q_up(GROUND_FLOOR, 1);
+		elev_set_button_lamp(BUTTON_CALL_UP, GROUND_FLOOR, 1);
+	}
+	if (elev_get_button_signal(BUTTON_CALL_UP, FIRST) == 1) {
+		set_order_in_Q_up(FIRST, 1);
+		elev_set_button_lamp(BUTTON_CALL_UP, FIRST, 1);
+	}
+	if (elev_get_button_signal(BUTTON_CALL_UP, SECOND) == 1) {
+		set_order_in_Q_up(SECOND, 1);
+		elev_set_button_lamp(BUTTON_CALL_UP, SECOND, 1);
 	}
 }
 
+void check_button_pressed_down(){
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, FIRST)) {
+		set_order_in_Q_down(FIRST, 1);
+		elev_set_button_lamp(BUTTON_CALL_DOWN, FIRST, 1);
+	} 
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, SECOND)) {
+		set_order_in_Q_down(SECOND, 1);
+		elev_set_button_lamp(BUTTON_CALL_DOWN, SECOND, 1);
+	} 
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, TOP_FLOOR)) {
+		set_order_in_Q_down(TOP_FLOOR, 1);
+		elev_set_button_lamp(BUTTON_CALL_DOWN, TOP_FLOOR, 1);
+	} 
+}
+void check_button_pressed_command(){
+	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR) {
+		set_order_in_Q_command(GROUND_FLOOR, 1);
+		elev_set_button_lamp(BUTTON_COMMAND, GROUND_FLOOR, 1);
+	}
+	if (elev_get_button_signal(BUTTON_COMMAND, FIRST) {
+		set_order_in_Q_command(FIRST, 1);
+		elev_set_button_lamp(BUTTON_COMMAND, FIRST, 1);
+	}
+	if (elev_get_button_signal(BUTTON_COMMAND, SECOND) {
+		set_order_in_Q_command(SECOND, 1);
+		elev_set_button_lamp(BUTTON_COMMAND, SECOND, 1);
+	}
+	if (elev_get_button_signal(BUTTON_COMMAND, TOP_FLOOR) {
+		set_order_in_Q_command(TOP_FLOOR, 1);
+		elev_set_button_lamp(BUTTON_COMMAND, TOP_FLOOR, 1);
+	}
+}
+void check_button_pressed() {
+	check_button_pressed_command();
+	check_button_pressed_down();
+	check_button_pressed_up();
+}
 
-
-//Fra( Floor_Signal =elev_ get_flor_sensor_signal)
-//poller alle følerene og seter etasje etter hva de returnerer
-void set_current_floor(void);
-	//Stuct_Current_floor.Current_Floor = elev_ get_flor_sensor_signal; 
-
-void button_pressed()
-elev_get_button_signal(BUTTON_CALL_UP, GROUND_FLOOR); 
-elev_get_button_signal(BUTTON_CALL_UP, FIRST); 
-elev_get_button_signal(BUTTON_CALL_UP, SECOND); 
-elev_get_button_signal(BUTTON_CALL_UP, TOP_FLOOR); 
-
-elev_get_button_signal(BUTTON_CALL_DOWN, GROUND_FLOOR); 
-elev_get_button_signal(BUTTON_CALL_DOWN, FIRST); 
-elev_get_button_signal(BUTTON_CALL_DOWN, SECOND); 
-elev_get_button_signal(BUTTON_CALL_DOWN, TOP_FLOOR); 
-
-
-
-
-
-Funksjoner fra elev.h :
- - int elev_init(void);
- - typedef enum tag_elev_motor_direction { 
-    	DIRN_DOWN = -1,
-    	DIRN_STOP = 0,
-    	DIRN_UP = 1
-	} elev_motor_direction_t;
- - void elev_set_motor_direction(elev_motor_direction_t dirn);
- - void elev_set_door_open_lamp(int value);
- - int elev_get_stop_signal(void);
- - void elev_set_stop_lamp(int value);
- - int elev_get_floor_sensor_signal(void);
- - void elev_set_floor_indicator(int floor);
- - typedef enum tag_elev_lamp_type { 
-	    BUTTON_CALL_UP = 0,
-	    BUTTON_CALL_DOWN = 1,
-    	BUTTON_COMMAND = 2
-	} elev_button_type_t;
- - int elev_get_button_signal(elev_button_type_t button, int floor);
- - void elev_set_button_lamp(elev_button_type_t button, int floor, int value);

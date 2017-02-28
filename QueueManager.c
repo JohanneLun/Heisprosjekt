@@ -1,43 +1,68 @@
 #include <stdio.h>
+#include "QueueManager.h"
 
-typedef struct {
-	int motor_direction;
-	struct queue_element *next;
-} queue_element;
+static int motor_direction;
+static int last_moving_motor_direction; //will only be 1 or -1
 
-//static int head_of_Q = NULL;
+static int queue_up[3] = {0};
+static int queue_down[3] = {0}; 
+static int queue_command[4] = {0}; 
 
-
-//må ha en variabel hvor man lagrer en peker til adressen til det første elementet i køen
-// lagres før funksjonene. Static global?
-
-//skal denne være static??
-void add_order_in_Q(queue_element *previous_Q_element, queue_element *new_Q_element){
-	//warning: assignment from incompatible pointer type
-	new_Q_element->next = previous_Q_element->next;
-	previous_Q_element->next = new_Q_element;
+// returns the value of motor_direction
+int get_motor_direction() {
+	return motor_direction;
+}
+// sets the motor_direction equal to the parameter
+void set_motor_direction(int direction) {
+	motor_direction = direction;
 }
 
-queue_element* get_next_in_Q(queue_element* current){
-	//int *temp = malloc(sizeof *temp);
-	// warning: initialization makes integer from pointer without a cast
-	queue_element* temp = current->next;
-	return temp;
+//Function for array Queue_up
+// bool_value is the value in the array, representing if the 
+// elevator has an order there or not
+void set_order_in_Q_up(int floor, int bool_value){
+	queue_up[floor] = bool_value;
+}
+void set_order_in_Q_down(int floor, int bool_value){
+	queue_down[floor] = bool_value;
+}
+void set_order_in_Q_command(int floor, int bool_value){
+	queue_command[floor] = bool_value;
 }
 
-void compare_Q_and_floor(){
- //   ????????  
+// returns the value at the floor place in the array
+int get_order_in_Q_up(int floor){
+	return queue_up[floor];
+}
+int get_order_in_Q_down(int floor){
+	return queue_down[floor];
+}
+int get_order_in_Q_command(int floor){
+	return queue_command[floor];
 }
 
+// set all floor orders/the bool value to 0
 void delete_Q(){
-	// setter head_of_Q til NULL; 
-	// må man gjøre noe annet for å slette de andre elementene, 
-	// eller bare forsvinner de i intet?
+	for (int i = 0; i < 3; i++) {
+		queue_up[i] = 0;
+		queue_down[i] = 0;
+	}
+	for(int i = 0; i < 4; i++) {
+		queue_command[i] = 0;
+	}
 }
-
-void delete_executed_order() {
-	//setter den 'globale' head_of_Q til neste element
-	// fjerner den forrige? bare fjerner pekeren?
+  
+//if (get_current_floor() != -1 && motor_direction == 0)
+void delete_executed_order(int floor){
+	set_order_in_Q_command(floor, 0);
+	//non-existing down-button at top floor
+	if(floor == 0){}
+	else {
+		set_order_in_Q_down(floor-1, 0);
+	}
+	//non-existing up-button at top floor
+	if(floor == 3){}
+	else {
+		set_order_in_Q_up(floor, 0);
+	}
 }
-
-//funksjon for å iterere over listen??

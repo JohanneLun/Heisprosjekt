@@ -1,7 +1,6 @@
 
 #include "Timer.h"
 
-//henter sekunder siden jan 1970 eln. og returnerer det
 double get_wall_time(){
     struct timeval time;
     gettimeofday(&time, NULL);
@@ -12,7 +11,6 @@ void start_timer(struct timer_struct* timer){
 	timer->initial_time = get_wall_time();
 }
 
-//skal sjekke tiden
 int check_time(struct timer_struct timer){
 
 	if (get_wall_time()- timer.initial_time >= 3){
