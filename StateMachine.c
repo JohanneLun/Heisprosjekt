@@ -11,13 +11,13 @@ void stop_button_activated_ignore_orders() {
 	elev_set_motor_direction(DIRN_STOP);
 	//delete_Q();	//ikke inkludert i denne c-filen ennå
 	if (elev_get_floor_sensor_signal()== -1) {
-		while (elev_get_stop_signal() != 0) {
+		while (elev_get_stop_signal() == 1) {
 			continue;
 		}
 	}
 	else {
 		elev_set_door_open_lamp(1);
-		while (elev_get_stop_signal() != 0) {
+		while (elev_get_stop_signal() == 1) {
 			continue;
 		}
 	} 
@@ -32,6 +32,8 @@ void set_current_floor(void) {
 int get_current_floor() {
 	return current_floor;
 }
+
+//en funksjon som skjekker at stp er aktivert 
 
 //sjekker om en knapp er trykket og legger til i kø og setter på lys, hvis en er trykket
 void check_button_pressed_up() {
