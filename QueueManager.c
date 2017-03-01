@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "QueueManager.h"
+#include "elev.h"
 
 static int motor_direction;
 static int last_moving_motor_direction; //will only be 1 or -1
@@ -15,6 +16,15 @@ int get_motor_direction() {
 // sets the motor_direction equal to the parameter
 void set_motor_direction(int direction) {
 	motor_direction = direction;
+}
+
+// returns the value of last_moving_motor_direction
+int get_last_moving_motor_direction() {
+	return last_moving_motor_direction;
+}
+// sets the last_moving_motor_direction equal to the parameter
+void set_last_moving_motor_direction(int direction) {
+	last_moving_motor_direction = direction;
 }
 
 //Function for array Queue_up
@@ -44,13 +54,25 @@ int get_order_in_Q_command(int floor){
 
 // set all floor orders/the bool value to 0
 void delete_Q(){
-	for (int i = 0; i < 3; i++) {
-		queue_up[i] = 0;
-		queue_down[i] = 0;
+	for (int y = 0; y < 3; y++) {
+		queue_up[y] = 0;
+		queue_down[y] = 0;
 	}
 	for(int x = 0; x < 4; x++) {
 		queue_command[x] = 0;
 	}
+
+    int i;
+    // Zero all floor button lamps
+    for (i = 0; i < N_FLOORS; ++i) {
+        if (i != 0)
+            elev_set_button_lamp(BUTTON_CALL_DOWN, i, 0);
+
+        if (i != N_FLOORS - 1)
+            elev_set_button_lamp(BUTTON_CALL_UP, i, 0);
+
+        elev_set_button_lamp(BUTTON_COMMAND, i, 0);
+    }
 }
   
 //if (get_current_floor() != -1 && motor_direction == 0)

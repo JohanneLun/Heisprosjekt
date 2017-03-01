@@ -31,7 +31,6 @@ static const int button_channel_matrix[N_FLOORS][N_BUTTONS] = {
 
 int elev_init(void) {
     int i;
-
     // Init hardware
     if (!io_init())
         return 0;

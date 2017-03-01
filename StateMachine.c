@@ -9,7 +9,7 @@ static int current_floor;
 void stop_button_activated_ignore_orders() {
 	elev_set_stop_lamp(1);
 	elev_set_motor_direction(DIRN_STOP);
-	//delete_Q();	//ikke inkludert i denne c-filen ennå
+	delete_Q();	
 	if (elev_get_floor_sensor_signal()== -1) {
 		while (elev_get_stop_signal() == 1) {
 			continue;
