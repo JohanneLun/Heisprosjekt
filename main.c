@@ -63,9 +63,12 @@ int main() {
             }
         }
         if (get_motor_direction() == 0) {
-            if (get_order_in_Q_up( elev_get_floor_sensor_signal() ) == 1 || get_order_in_Q_command(elev_get_floor_sensor_signal()) == 1 || get_order_in_Q_down(elev_get_floor_sensor_signal()) == 1) {
-                delete_executed_order(elev_get_floor_sensor_signal());
+            
+            if (get_order_in_Q_up(elev_get_floor_sensor_signal()) == 1 ){
 
+            }
+            if (get_order_in_Q_command(elev_get_floor_sensor_signal()) == 1 )
+                || get_order_in_Q_down(elev_get_floor_sensor_signal()) == 1) {
                 for (int c = 1 ; c <= 32767 ; c++ ){
                 for (int d = 1 ; d <= 32767 ; d++ ){}
                 }
