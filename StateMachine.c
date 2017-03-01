@@ -63,7 +63,7 @@ void check_button_pressed_down(){
 	if (elev_get_button_signal(BUTTON_CALL_DOWN, TOP_FLOOR)) {
 		set_order_in_Q_down(TOP_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, TOP_FLOOR, 1);
-	} 
+	}
 }
 void check_button_pressed_command(){
 	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR)) {

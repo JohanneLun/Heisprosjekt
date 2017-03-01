@@ -5,8 +5,8 @@
 static int motor_direction;
 static int last_moving_motor_direction; //will only be 1 or -1
 
-static int queue_up[3] = {0};
-static int queue_down[3] = {0}; 
+static int queue_up[4] = {0}; // plass for 4. etasje finnes egentlig ikke
+static int queue_down[4] = {0};  // plass for 1. etasje finnes egentlig ikke
 static int queue_command[4] = {0}; 
 
 // returns the value of motor_direction
@@ -54,12 +54,10 @@ int get_order_in_Q_command(int floor){
 
 // set all floor orders/the bool value to 0
 void delete_Q(){
-	for (int y = 0; y < 3; y++) {
-		queue_up[y] = 0;
-		queue_down[y] = 0;
-	}
 	for(int x = 0; x < 4; x++) {
 		queue_command[x] = 0;
+		queue_up[x] = 0;
+		queue_down[x] = 0;
 	}
 
     int i;
@@ -78,14 +76,6 @@ void delete_Q(){
 //if (get_current_floor() != -1 && motor_direction == 0)
 void delete_executed_order(int floor){
 	set_order_in_Q_command(floor, 0);
-	//non-existing down-button at top floor
-	if(floor == 0){}
-	else {
-		set_order_in_Q_down(floor-1, 0);
-	}
-	//non-existing up-button at top floor
-	if(floor == 3){}
-	else {
-		set_order_in_Q_up(floor, 0);
-	}
+	set_order_in_Q_down(floor, 0);
+	set_order_in_Q_up(floor, 0);
 }

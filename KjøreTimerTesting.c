@@ -17,6 +17,7 @@ int main() {
 
 	if (check_time(timer) == 1) {
 		returnvalue = 1;
+		timer_started = 0;
 	}
 
 	printf("%d\n", returnvalue);
