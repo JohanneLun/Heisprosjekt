@@ -7,7 +7,7 @@ enum Floor{
 	FIRST = 1,
 	SECOND = 2,
 	TOP_FLOOR = 3,
-	NOT_ON_FLOOR = -1//The elevator is between to floors  
+	NOT_ON_FLOOR = -1//The elevator is between two floors  
 };
 
 void stop_button_activated_ignore_orders();

@@ -2,6 +2,7 @@
 
 #include "Initialize.h"
 #include "elev.h"
+#include "QueueManager.h"
 
 
 void elev_initialize() {
@@ -15,4 +16,5 @@ void elev_initialize() {
 		while (elev_get_floor_sensor_signal() == -1) {}
 	}
 	elev_set_motor_direction(DIRN_STOP);
+	set_motor_direction(DIRN_STOP);
 }

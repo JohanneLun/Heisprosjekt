@@ -73,7 +73,6 @@ void delete_Q(){
     }
 }
   
-//if (get_current_floor() != -1 && motor_direction == 0)
 void delete_executed_order(int floor){
 	set_order_in_Q_command(floor, 0);
 	set_order_in_Q_down(floor, 0);
