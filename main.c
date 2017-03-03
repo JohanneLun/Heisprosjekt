@@ -168,6 +168,11 @@ int main() {
                 elev_set_motor_direction(DIRN_STOP);
             }
         }
+        /*
+        // kode som skulle få heisen til å skifte retning når den kommer til øverste eller nederste etasje
+        // dette tenker vi egentlig burde være overflødig siden den ikke skal gå til en av de etasjene uten å ha
+        // en bestilling der som da skal få heisen til å stoppe. Da skal funksjonaliteten for hvilken retning heisen 
+        // skal starte å kjøre i gjøre at den ikke kører videre oppover.. virker som dette ikke fungerer...
         if (get_motor_direction() == 1 && elev_get_floor_sensor_signal() == 3) {
             elev_set_motor_direction(DIRN_DOWN);
             set_last_moving_motor_direction(DIRN_DOWN);
@@ -178,12 +183,10 @@ int main() {
             set_last_moving_motor_direction(DIRN_UP);
             elev_set_motor_direction(DIRN_UP);
         }
+        */
     }
     return 0;
 }
-
-
-
 
 
 /*
