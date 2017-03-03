@@ -3,7 +3,7 @@
 //
 // 2007, Martin Korsgaard
 
-
+#include <stdio.h>
 #include "channels.h"
 #include "elev.h"
 #include "io.h"
@@ -135,7 +135,7 @@ void elev_set_button_lamp(elev_button_type_t button, int floor, int value) {
 	/*
     assert(floor >= 0);
     assert(floor < N_FLOORS);
-    assert(!(button == BUTTON_CALL_UP && floor == N_FLOORS - 1));
+    assert(!(button == BUTTON_CALL_UP && floor == N_FLOORS - 1)); // vi kan ikke trykke på opp knappen i 4 etg? 
     assert(!(button == BUTTON_CALL_DOWN && floor == 0));
     assert(button == BUTTON_CALL_UP || button == BUTTON_CALL_DOWN || button == BUTTON_COMMAND);
     */

@@ -62,7 +62,7 @@ void delete_Q(){
 
     int i;
     // Zero all floor button lamps
-    for (i = 0; i < N_FLOORS; ++i) {
+    for (i = 0; i < N_FLOORS; ++i) { // burde henne ha hver implimentert i++ 
         if (i != 0)
             elev_set_button_lamp(BUTTON_CALL_DOWN, i, 0);
 
@@ -75,6 +75,22 @@ void delete_Q(){
   
 void delete_executed_order(int floor){
 	set_order_in_Q_command(floor, 0);
+	elev_set_button_lamp(BUTTON_COMMAND, floor, 0);
+
 	set_order_in_Q_down(floor, 0);
+	elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0);
+
 	set_order_in_Q_up(floor, 0);
+	elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
 }
+
+int if_order_in_floors_under(int floor) {
+    if (get_order_in_Q_down(floor) || get_order_in_Q_command(floor)) {return 1;}
+    else {return 0;}
+}
+
+int if_order_in_floors_over(int floor) {
+    if (get_order_in_Q_up(floor) || get_order_in_Q_command(floor)) {return 1;}
+    else {return 0;}
+}
+

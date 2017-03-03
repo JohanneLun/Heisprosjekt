@@ -15,6 +15,8 @@ int get_order_in_Q_down(int floor);
 int get_order_in_Q_command(int floor);
 void delete_Q();
 void delete_executed_order(int floor);
+int if_order_in_floors_under(int floor);
+int if_order_in_floors_over(int floor);
 
 
 #endif
