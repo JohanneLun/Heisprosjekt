@@ -85,12 +85,17 @@ void delete_executed_order(int floor){
 }
 
 int if_order_in_floors_under(int floor) {
-    if (get_order_in_Q_down(floor) || get_order_in_Q_command(floor)) {return 1;}
+    if (get_order_in_Q_down(floor) || get_order_in_Q_command(floor) || get_order_in_Q_up(floor) ) {return 1;}
     else {return 0;}
 }
 
 int if_order_in_floors_over(int floor) {
-    if (get_order_in_Q_up(floor) || get_order_in_Q_command(floor)) {return 1;}
+    if (get_order_in_Q_up(floor) || get_order_in_Q_command(floor) || get_order_in_Q_down(floor)) {return 1;}
+    else {return 0;}
+}
+
+int if_order_in_Q(int floor) {
+    if (get_order_in_Q_up(floor) || get_order_in_Q_command(floor) || get_order_in_Q_down(floor)) {return 1;}
     else {return 0;}
 }
 

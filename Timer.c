@@ -7,13 +7,13 @@ double get_wall_time(){
     return (double)time.tv_sec + (double)time.tv_usec * .000001;
 }
 
-void start_timer(struct timer_struct* timer){
-	timer->initial_time = get_wall_time();
+void start_timer(){
+	timeStamp = get_wall_time();
 }
 
-int check_time(struct timer_struct timer){
+int check_time(){
 
-	if (get_wall_time()- timer.initial_time >= 3){
+	if (get_wall_time()- timeStamp >= 3){
 		// printf("det har gått 3 sek\n");
 		return 1;
 	}
