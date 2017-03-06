@@ -24,6 +24,7 @@ void elev_initialize() {
 	elev_set_motor_direction(DIRN_STOP);
 	set_motor_direction(DIRN_STOP);
 	set_last_moving_motor_direction(DIRN_DOWN);
+	printf("setter motor direction til NED\n");
 
     start_timer(&timer); //huske å fjerne alt som hører til denne timeren
     while (check_time(timer) != 1){}

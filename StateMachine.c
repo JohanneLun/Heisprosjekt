@@ -27,7 +27,9 @@ void stop_button_activated_ignore_orders() {
 // hvor funksjonen tar inn et struct &timer og setter dør lampen av.
 
 void set_current_floor(void) {
+	if (elev_get_floor_sensor_signal() != -1){
 	current_floor = elev_get_floor_sensor_signal();
+	}	
 }
 int get_current_floor() {
 	return current_floor;
@@ -37,6 +39,8 @@ int get_current_floor() {
 
 //sjekker om en knapp er trykket og legger til i kø og setter på lys, hvis en er trykket
 void check_button_pressed_up() {
+	set_order_in_Q_up(TOP_FLOOR, 0);
+
 	if (elev_get_button_signal(BUTTON_CALL_UP, GROUND_FLOOR) == 1) {
 		set_order_in_Q_up(GROUND_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_CALL_UP, GROUND_FLOOR, 1);
@@ -49,36 +53,39 @@ void check_button_pressed_up() {
 		set_order_in_Q_up(SECOND, 1);
 		elev_set_button_lamp(BUTTON_CALL_UP, SECOND, 1);
 	}
+
 }
 
 void check_button_pressed_down(){
-	if (elev_get_button_signal(BUTTON_CALL_DOWN, FIRST)) {
+	set_order_in_Q_down(GROUND_FLOOR, 0);
+
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, FIRST) == 1) {
 		set_order_in_Q_down(FIRST, 1);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, FIRST, 1);
 	} 
-	if (elev_get_button_signal(BUTTON_CALL_DOWN, SECOND)) {
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, SECOND) == 1) {
 		set_order_in_Q_down(SECOND, 1);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, SECOND, 1);
 	} 
-	if (elev_get_button_signal(BUTTON_CALL_DOWN, TOP_FLOOR)) {
+	if (elev_get_button_signal(BUTTON_CALL_DOWN, TOP_FLOOR) == 1) {
 		set_order_in_Q_down(TOP_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, TOP_FLOOR, 1);
 	}
 }
 void check_button_pressed_command(){
-	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR)) {
+	if (elev_get_button_signal(BUTTON_COMMAND, GROUND_FLOOR) == 1) {
 		set_order_in_Q_command(GROUND_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, GROUND_FLOOR, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, FIRST)) {
+	if (elev_get_button_signal(BUTTON_COMMAND, FIRST) == 1) {
 		set_order_in_Q_command(FIRST, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, FIRST, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, SECOND)) {
+	if (elev_get_button_signal(BUTTON_COMMAND, SECOND) == 1) {
 		set_order_in_Q_command(SECOND, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, SECOND, 1);
 	}
-	if (elev_get_button_signal(BUTTON_COMMAND, TOP_FLOOR)) {
+	if (elev_get_button_signal(BUTTON_COMMAND, TOP_FLOOR) == 1) {
 		set_order_in_Q_command(TOP_FLOOR, 1);
 		elev_set_button_lamp(BUTTON_COMMAND, TOP_FLOOR, 1);
 	}
